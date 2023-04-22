@@ -20,6 +20,7 @@ def start(message):
 
 @bot.message_handler(commands = ['find'])
 def get_lang_of_musicgroup(message):
+
     bot.send_message(message.chat.id, 'Введите название группы, только сначала скажите, группа носит название на русском языке или на английском')
     mess = bot.send_message(message.chat.id, 'en/ан - название на английском, ru/ру - на русском')
     os.chdir("C:\\Users\\steve\\PycharmProjects\\pythonProject1\\For_Project\\Tabs")
@@ -35,7 +36,7 @@ def get_musicgroup(message):
 
 def your_group(message):
     my_answers.append(message.text)
-    my_answers[1] = my_answers[1]
+
     print(my_answers[1])
     print(my_answers)
 
@@ -57,28 +58,17 @@ def your_group(message):
 
     print(my_group)
     if my_group != set():
-        bot.send_message(message.chat.id, f'Я нашел группу {my_answers[1]}')
+        bot.send_message(message.chat.id, f'Я нашел группу {my_answers[1]}, кстати, у меня есть {len(os.listdir())} файлов')
+    print(os.getcwd())
+    print(os.listdir())
+    mess = bot.send_message(message.chat.id, 'Какую композицию мне найти?')
+    bot.register_next_step_handler(mess, your_song)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def your_song(message):
+    my_path = os.getcwd()
+    my_answers.append(message.text)
+    file = transliter.song_finder(my_path, my_answers[2].lower())
+    print(file)
 
 
 
