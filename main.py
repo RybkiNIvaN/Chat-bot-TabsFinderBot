@@ -2,30 +2,55 @@ import telebot
 import config
 import os
 import transliter
+<<<<<<< HEAD
 import making_collection
+=======
+>>>>>>> refs/remotes/origin/main
 from transliterate import translit
 from telebot import types
 
 bot = telebot.TeleBot(config.config['token'])
 os.chdir("C:\\Users\\steve\\PycharmProjects\\pythonProject1\\For_Project\\Tabs")
 my_path = os.getcwd()
+<<<<<<< HEAD
 my_answers = []  # 0 - название группы    1 - название песни    2 - файл песни
 
+=======
+my_answers = []  # 0 - язык    1 - название группы
+>>>>>>> refs/remotes/origin/main
 
 @bot.message_handler(commands=['start'])
 def start(message):
+<<<<<<< HEAD
     markup_reply = types.ReplyKeyboardMarkup(resize_keyboard=True)
     button_collection = types.KeyboardButton('Открыть коллекцию')
     markup_reply.add(button_collection)
     bot.send_message(message.chat.id, 'Добро пожаловать, путник!', reply_markup=markup_reply)
     bot.send_message(message.chat.id, 'Чтобы найти музыкальную группу, введите /find')
 
+=======
+
+    bot.send_message(message.chat.id, 'Добро пожаловать, путник!')
+    bot.send_message(message.chat.id, 'Чтобы найти музыкальную группу, введите /find')
+
+@bot.message_handler(commands = ['find'])
+def get_lang_of_musicgroup(message):
+
+    bot.send_message(message.chat.id, 'Введите название группы, только сначала скажите, группа носит название на русском языке или на английском')
+    mess = bot.send_message(message.chat.id, 'en/ан - название на английском, ru/ру - на русском')
+    os.chdir("C:\\Users\\steve\\PycharmProjects\\pythonProject1\\For_Project\\Tabs")
+    print(os.getcwd())
+    bot.register_next_step_handler(mess, get_musicgroup)
+>>>>>>> refs/remotes/origin/main
 
 @bot.message_handler(commands=['find'])
 def get_musicgroup(message):
     my_answers.clear()
+<<<<<<< HEAD
     os.chdir("C:\\Users\\steve\\PycharmProjects\\pythonProject1\\For_Project\\Tabs")
     print(os.getcwd())
+=======
+>>>>>>> refs/remotes/origin/main
     mess = bot.send_message(message.chat.id, 'Хорошо, песни какой группы хотите сыграть сегодня?')
 
     bot.register_next_step_handler(mess, your_group)
@@ -33,10 +58,16 @@ def get_musicgroup(message):
 
 def your_group(message):
     my_answers.append(message.text)
+<<<<<<< HEAD
     print(my_answers[0])
+=======
+
+    print(my_answers[1])
+>>>>>>> refs/remotes/origin/main
     print(my_answers)
     bot.send_message(message.chat.id, f'Будем искать группу {message.text}')
     my_path = os.getcwd()
+<<<<<<< HEAD
     try:
         transliter.go_to_firstletter_path(my_path, transliter.first_letter_number(my_answers[0].lower()))
         my_path = os.getcwd()
@@ -119,3 +150,40 @@ try:
     bot.polling(none_stop=True, interval=0)
 except Exception:
     pass
+=======
+    transliter.go_to_firstletter_path(my_path, transliter.first_letter_number(my_answers[1].lower()), my_answers[0])
+    my_path = os.getcwd()
+
+    print(my_path)
+
+    if 'ь' in my_answers[1]:
+        my_answers_removed = my_answers[1].replace('ь', '')
+        my_answers1_translite = translit(my_answers_removed.lower(), language_code='ru', reversed=True)
+        my_group = transliter.group_finder(my_path, my_answers1_translite)
+    else:
+        my_answers1_translite = translit(my_answers[1].lower(), language_code='ru', reversed=True)
+        my_group = transliter.group_finder(my_path, my_answers1_translite)
+
+
+    print(my_group)
+    if my_group != set():
+        bot.send_message(message.chat.id, f'Я нашел группу {my_answers[1]}, кстати, у меня есть {len(os.listdir())} файлов')
+    print(os.getcwd())
+    print(os.listdir())
+    mess = bot.send_message(message.chat.id, 'Какую композицию мне найти?')
+    bot.register_next_step_handler(mess, your_song)
+
+def your_song(message):
+    my_path = os.getcwd()
+    my_answers.append(message.text)
+    file = transliter.song_finder(my_path, my_answers[2].lower())
+    print(file)
+
+
+
+
+
+
+
+bot.polling(none_stop=True)
+>>>>>>> refs/remotes/origin/main
