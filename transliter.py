@@ -3,6 +3,12 @@ import ords
 import transliterate
 import removing_letters
 from transliterate import translit
+<<<<<<< HEAD
+=======
+
+def first_letter_number(your_group):
+    return ords.first_letters_dict[your_group[0].lower()]
+>>>>>>> dbdbdf7bcae587bec984e69b0efa90430e17732b
 
 def first_letter_number(your_group):
     return ords.first_letters_dict[your_group[0].lower()]
@@ -50,12 +56,16 @@ def group_finder(my_path, your_group):
     for k in group:
         list_of_sets.append(set_generator(k))
 
+<<<<<<< HEAD
 >>>>>>> refs/remotes/origin/main
+=======
+>>>>>>> dbdbdf7bcae587bec984e69b0efa90430e17732b
     print(list_of_sets)
     final_set = set(list_of_sets[0])
 
     for i in range(1, len(list_of_sets)):
         final_set = final_set.intersection(list_of_sets[i])
+<<<<<<< HEAD
 <<<<<<< HEAD
     final_list = list(final_set)
     print(str(final_list[0]))
@@ -65,6 +75,8 @@ def group_finder(my_path, your_group):
     elif group_or_song == 'song':
         return str(final_list[0])
 =======
+=======
+>>>>>>> dbdbdf7bcae587bec984e69b0efa90430e17732b
 
     final_list = list(final_set)
     print(str(final_list[0]))
@@ -99,10 +111,41 @@ def song_finder(my_path, your_song):
     print(str(final_list[0]))
     return str(final_list[0])
 
+def song_finder(my_path, your_song):
+    your_song = removing_letters.remove_letters(your_song)
+    your_song = translit(your_song, language_code='ru', reversed=True)
+    print(your_song)
+    song = your_song.split()
+    list_of_sets = []
+
+    def set_generator(song):
+        my_set = set()
+        for j in os.listdir(my_path):
+            if song in j: my_set.add(j)
+        return my_set
+
+    for k in song:
+        list_of_sets.append(set_generator(k))
+
+    print(list_of_sets)
+    final_set = set(list_of_sets[0])
+
+    for i in range(1, len(list_of_sets)):
+        final_set = final_set.intersection(list_of_sets[i])
+
+    final_list = list(final_set)
+    print(str(final_list[0]))
+    return str(final_list[0])
 
 
+
+
+
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 =======
 
 >>>>>>> refs/remotes/origin/main
+=======
+>>>>>>> dbdbdf7bcae587bec984e69b0efa90430e17732b

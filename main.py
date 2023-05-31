@@ -3,15 +3,19 @@ import config
 import os
 import transliter
 <<<<<<< HEAD
+<<<<<<< HEAD
 import making_collection
 =======
 >>>>>>> refs/remotes/origin/main
+=======
+>>>>>>> dbdbdf7bcae587bec984e69b0efa90430e17732b
 from transliterate import translit
 from telebot import types
 
 bot = telebot.TeleBot(config.config['token'])
 os.chdir("C:\\Users\\steve\\PycharmProjects\\pythonProject1\\For_Project\\Tabs")
 my_path = os.getcwd()
+<<<<<<< HEAD
 <<<<<<< HEAD
 my_answers = []  # 0 - название группы    1 - название песни    2 - файл песни
 
@@ -29,6 +33,13 @@ def start(message):
     bot.send_message(message.chat.id, 'Чтобы найти музыкальную группу, введите /find')
 
 =======
+=======
+my_answers = []  # 0 - язык    1 - название группы
+
+
+@bot.message_handler(commands = ['start'])
+def start(message):
+>>>>>>> dbdbdf7bcae587bec984e69b0efa90430e17732b
 
     bot.send_message(message.chat.id, 'Добро пожаловать, путник!')
     bot.send_message(message.chat.id, 'Чтобы найти музыкальную группу, введите /find')
@@ -47,10 +58,13 @@ def get_lang_of_musicgroup(message):
 def get_musicgroup(message):
     my_answers.clear()
 <<<<<<< HEAD
+<<<<<<< HEAD
     os.chdir("C:\\Users\\steve\\PycharmProjects\\pythonProject1\\For_Project\\Tabs")
     print(os.getcwd())
 =======
 >>>>>>> refs/remotes/origin/main
+=======
+>>>>>>> dbdbdf7bcae587bec984e69b0efa90430e17732b
     mess = bot.send_message(message.chat.id, 'Хорошо, песни какой группы хотите сыграть сегодня?')
 
     bot.register_next_step_handler(mess, your_group)
@@ -59,14 +73,21 @@ def get_musicgroup(message):
 def your_group(message):
     my_answers.append(message.text)
 <<<<<<< HEAD
+<<<<<<< HEAD
     print(my_answers[0])
 =======
+=======
+
+    print(my_answers[1])
+    print(my_answers)
+>>>>>>> dbdbdf7bcae587bec984e69b0efa90430e17732b
 
     print(my_answers[1])
 >>>>>>> refs/remotes/origin/main
     print(my_answers)
     bot.send_message(message.chat.id, f'Будем искать группу {message.text}')
     my_path = os.getcwd()
+<<<<<<< HEAD
 <<<<<<< HEAD
     try:
         transliter.go_to_firstletter_path(my_path, transliter.first_letter_number(my_answers[0].lower()))
@@ -153,6 +174,10 @@ except Exception:
 =======
     transliter.go_to_firstletter_path(my_path, transliter.first_letter_number(my_answers[1].lower()), my_answers[0])
     my_path = os.getcwd()
+=======
+    transliter.go_to_firstletter_path(my_path, transliter.first_letter_number(my_answers[1].lower()), my_answers[0])
+    my_path = os.getcwd()
+>>>>>>> dbdbdf7bcae587bec984e69b0efa90430e17732b
 
     print(my_path)
 
