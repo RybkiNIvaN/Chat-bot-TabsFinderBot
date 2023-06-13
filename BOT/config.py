@@ -1,1 +1,4 @@
-config = {'name': 'TabsFinder', 'token': '6257497154:AAFAeG026NH0AObp-eDA-FZF675Fy0C70OQ'}
+config = {'name': 'TabsFinder'}
+path_project = r"C:\Users\steve\OneDrive\Desktop\Проект"
+path_tabs = r"C:\Users\steve\OneDrive\Desktop\Проект\For_Project\Tabs"
+path_sent = r"C:\Users\steve\OneDrive\Desktop\Проект\For_Project\Sent_Tabs"
