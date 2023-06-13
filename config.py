@@ -1,1 +1,0 @@
-config = {'name': 'TabsFinder', 'token': '6257497154:AAFAeG026NH0AObp-eDA-FZF675Fy0C70OQ'}
